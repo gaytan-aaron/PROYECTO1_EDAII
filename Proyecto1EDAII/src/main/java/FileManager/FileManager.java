@@ -8,6 +8,11 @@ import java.util.*;
  */
 public class FileManager {
     
+    /**
+     * 
+     * @param fileName
+     * @return Regresa una lista con todas las claves contenidas en el archivo keys.
+     */
     public static List <String> readKeyFile(String fileName){
         File keyFile = new File(fileName);
         List <String> keys = new LinkedList<>(); 
