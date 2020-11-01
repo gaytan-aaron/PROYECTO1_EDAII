@@ -1,24 +1,22 @@
+package Test;
 
-package proyect;
-
+import FileManager.FileManager;
 import java.util.*;
-
 
 /**
  * @author Team4
  */
-public class Proyect {
+public class Main {
+
     public static void main(String[] args) {
         String fileName = "./files/keys.txt";
-        List <String> keys;
- 
-        
+        List<String> keys;
+
         keys = FileManager.readKeyFile(fileName);
-        
-        
-        for(String fullKey: keys){
+
+        for (String fullKey : keys) {
             System.out.println("key = " + fullKey);
         }
-        
+
     }
 }

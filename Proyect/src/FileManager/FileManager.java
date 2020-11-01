@@ -1,28 +1,27 @@
-
-package proyect;
+package FileManager;
 
 import java.io.*;
 import java.util.*;
-
 
 /**
  * @author Team4
  */
 public class FileManager {
-    
+
     /**
-     * 
+     *
      * @param fileName
-     * @return Regresa una lista con todas las claves contenidas en el archivo keys.
+     * @return Regresa una lista con todas las claves contenidas en el archivo
+     * keys.
      */
-    public static List <String> readKeyFile(String fileName){
+    public static List<String> readKeyFile(String fileName) {
         File keyFile = new File(fileName);
-        List <String> keys = new LinkedList<>(); 
+        List<String> keys = new LinkedList<>();
         try {
             BufferedReader input;
             input = new BufferedReader(new FileReader(keyFile));
             String reading = input.readLine();
-            while(reading != null){
+            while (reading != null) {
                 System.out.println("Clave leida: " + reading);
                 keys.add(reading);
                 reading = input.readLine();
