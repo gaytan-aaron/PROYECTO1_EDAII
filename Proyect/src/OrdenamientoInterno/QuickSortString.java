@@ -65,7 +65,7 @@ public class QuickSortString {
     
     public static void printArray(String fileName){
         for(String s: a){
-            FileManager.writeKeyFile(fileName, s);
+            FileManager.writeKeyFile(fileName, s, false);
         }
     }
 }

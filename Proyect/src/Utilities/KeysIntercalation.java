@@ -8,6 +8,9 @@ import java.util.*;
  * @author aaron
  */
 public class KeysIntercalation {
+
+    public static boolean firstTime;
+    
     public static void intercalation(List<String> keyOne, List<String> keyTwo, String fileName){
         List<String> keys = new LinkedList<>();
         while(!keyOne.isEmpty() && !keyTwo.isEmpty()){
@@ -30,7 +33,8 @@ public class KeysIntercalation {
     
     private static void printArray(String fileName, List<String> keys){
         for (String key : keys) {
-            FileManager.writeKeyFile(fileName, key);
+            FileManager.writeKeyFile(fileName, key, firstTime);
+            firstTime = false;
         }
     }
 }

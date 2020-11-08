@@ -17,35 +17,62 @@ public class Main {
         String auxThree = "./files/auxThree.txt";
         List<String> keysOne;
         List<String> keysTwo;
-        int n=3;
+        int keyNumber = FileManager.countKeySize(fileName);
+        int n = 3;
+        int cont = 0;
+        int externCont = 0;
         FileManager polyphaseOne = new FileManager(n);
         FileManager polyphaseTwo = new FileManager(n);
         FileManager.createFile(auxOne);
         FileManager.createFile(auxTwo);
         FileManager.createFile(auxThree);
-        int cont=0;
-        
-        while(polyphaseOne.pivot != null){
+
+        while (polyphaseOne.pivot != null) {
             cont++;
             keysOne = polyphaseOne.readBlockFile(fileName);
-            if(cont%2==1)
+            if (cont % 2 == 1) {
                 KeysUtilities.sortBlock(keysOne, auxOne);
-            else
+            } else {
                 KeysUtilities.sortBlock(keysOne, auxTwo);
+            }
         }
-        
-        polyphaseOne.pivot="initial";
-        polyphaseTwo.pivot="initial";
-        cont=0;
-        
-        while(polyphaseOne.pivot != null){
-            cont++;
-            keysOne = polyphaseOne.readBlockFile(auxOne);
-            keysTwo = polyphaseTwo.readBlockFile(auxTwo);
-            if(cont%2==1)
-                KeysIntercalation.intercalation(keysOne, keysTwo, fileName);
-            else
-                KeysIntercalation.intercalation(keysOne, keysTwo, auxThree);
+
+        while (n <= keyNumber / 2) {
+            externCont++;
+            polyphaseOne.pivot = "initial";
+            polyphaseOne.n = n;
+            polyphaseTwo.pivot = "initial";
+            polyphaseTwo.n = n;
+            cont = 0;
+            KeysIntercalation.firstTime = true;
+
+            while (polyphaseOne.pivot != null) {
+                cont++;
+                if (externCont % 2 == 1) {
+                    keysOne = polyphaseOne.readBlockFile(auxOne);
+                    if(polyphaseTwo.pivot != null)
+                        keysTwo = polyphaseTwo.readBlockFile(auxTwo);
+                    else
+                        keysTwo = null;
+
+                    if (cont % 2 == 1) {
+                        KeysIntercalation.intercalation(keysOne, keysTwo, fileName);
+                    } else {
+                        KeysIntercalation.intercalation(keysOne, keysTwo, auxThree);
+                    }
+                } else {
+                    keysOne = polyphaseOne.readBlockFile(fileName);
+                    keysTwo = polyphaseTwo.readBlockFile(auxThree);
+                    
+                    if (cont % 2 == 1) {
+                        KeysIntercalation.intercalation(keysOne, keysTwo, auxOne);
+                    } else {
+                        KeysIntercalation.intercalation(keysOne, keysTwo, auxTwo);
+                    }
+                }
+            }
+            
+            n = n * 2;
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class FileManager {
     
-    int n; //Se utiliza para definir el tamaño de los bloques.
+    public int n; //Se utiliza para definir el tamaño de los bloques.
     public String pivot; //Se utiliza para realizar bloques de N tamaño.
     
     public FileManager(int n){
@@ -88,15 +88,45 @@ public class FileManager {
         return keys;
     }
     
+    /*
+    *Cuenta el numero de elementos que contiene nuestro archivo de claves originales.
+    */
+    public static int countKeySize(String fileName) {
+        File keyFile = new File(fileName);
+        int keysNumber = 0;
+        try {
+            BufferedReader input;
+            input = new BufferedReader(new FileReader(keyFile));
+            String reading = input.readLine();
+            while (reading != null) {
+                keysNumber++;
+                reading = input.readLine();
+            }
+            input.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return keysNumber;
+    }
+    
     /**
      * 
      * @param fileName Nombre del archivo en el que se va a escribir la clave.
      * @param keyToWrite Clave que se va a escribir.
+     * @param reWrite Nos indica si el archivo se va a sobreescribir.
      */
-    public static void writeKeyFile(String fileName, String keyToWrite) {
+    public static void writeKeyFile(String fileName, String keyToWrite, boolean reWrite) {
         File keyFile = new File(fileName);
         try {
-            PrintWriter exit = new PrintWriter(new FileWriter(keyFile, true));
+            PrintWriter exit;               
+            if(reWrite==false){
+                 exit = new PrintWriter(new FileWriter(keyFile, true));
+            }
+            else{
+                exit = new PrintWriter(keyFile);
+            }
             exit.println(keyToWrite);
             exit.close();
         } catch (FileNotFoundException ex) {
