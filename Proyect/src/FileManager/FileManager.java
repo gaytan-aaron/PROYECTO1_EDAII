@@ -2,6 +2,8 @@ package FileManager;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Team4
@@ -84,5 +86,33 @@ public class FileManager {
             ex.printStackTrace(System.out);
         }
         return keys;
+    }
+    
+    /**
+     * 
+     * @param fileName Nombre del archivo en el que se va a escribir la clave.
+     * @param keyToWrite Clave que se va a escribir.
+     */
+    public static void writeKeyFile(String fileName, String keyToWrite) {
+        File keyFile = new File(fileName);
+        try {
+            PrintWriter exit = new PrintWriter(new FileWriter(keyFile, true));
+            exit.println(keyToWrite);
+            exit.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void createFile(String fileName) {
+        File fileC = new File(fileName);
+        try {
+            PrintWriter exit = new PrintWriter(fileC);
+            exit.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
 }
