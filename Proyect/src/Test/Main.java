@@ -1,6 +1,7 @@
 package Test;
 
 import FileManager.FileManager;
+import Utilities.KeysIntercalation;
 import Utilities.KeysUtilities;
 import java.util.*;
 
@@ -13,20 +14,38 @@ public class Main {
         String fileName = "./files/keys.txt";
         String auxOne = "./files/auxOne.txt";
         String auxTwo = "./files/auxTwo.txt";
-        List<String> keys;
-        FileManager polyphase = new FileManager(3);
+        String auxThree = "./files/auxThree.txt";
+        List<String> keysOne;
+        List<String> keysTwo;
+        int n=3;
+        FileManager polyphaseOne = new FileManager(n);
+        FileManager polyphaseTwo = new FileManager(n);
         FileManager.createFile(auxOne);
         FileManager.createFile(auxTwo);
+        FileManager.createFile(auxThree);
         int cont=0;
         
-        while(polyphase.pivot != null){
+        while(polyphaseOne.pivot != null){
             cont++;
-            keys = polyphase.readBlockFile(fileName);
+            keysOne = polyphaseOne.readBlockFile(fileName);
             if(cont%2==1)
-                KeysUtilities.sortBlock(keys, auxOne);
+                KeysUtilities.sortBlock(keysOne, auxOne);
             else
-                KeysUtilities.sortBlock(keys, auxTwo);
+                KeysUtilities.sortBlock(keysOne, auxTwo);
         }
-
+        
+        polyphaseOne.pivot="initial";
+        polyphaseTwo.pivot="initial";
+        cont=0;
+        
+        while(polyphaseOne.pivot != null){
+            cont++;
+            keysOne = polyphaseOne.readBlockFile(auxOne);
+            keysTwo = polyphaseTwo.readBlockFile(auxTwo);
+            if(cont%2==1)
+                KeysIntercalation.intercalation(keysOne, keysTwo, fileName);
+            else
+                KeysIntercalation.intercalation(keysOne, keysTwo, auxThree);
+        }
     }
 }

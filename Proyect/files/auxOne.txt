@@ -1,6 +1,0 @@
-Jose, Mendez Rodriguez, 987652
-Juan, Perez Gomez, 303030
-Luis Alberto, Gomez Lopez, 123456
-Didier, Nieto Solis, 238765
-Jorge, Peralta Perez, 236678
-Jose Refugio, Velazquez Gonzalez, 101010
