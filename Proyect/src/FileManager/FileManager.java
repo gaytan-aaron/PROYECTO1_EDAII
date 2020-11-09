@@ -13,6 +13,7 @@ public class FileManager {
     public int n; //Se utiliza para definir el tamaño de los bloques.
     public String pivot; //Se utiliza para realizar bloques de N tamaño.
     
+    //Metodo constructor
     public FileManager(int n){
         this.n = n;
         this.pivot = "initial";
@@ -90,6 +91,7 @@ public class FileManager {
     
     /*
     *Cuenta el numero de elementos que contiene nuestro archivo de claves originales.
+    *@param fileName Archivo del cual se van a contar los elementos.
     */
     public static int countKeySize(String fileName) {
         File keyFile = new File(fileName);
