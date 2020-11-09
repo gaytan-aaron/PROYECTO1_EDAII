@@ -34,7 +34,7 @@ public class FileManager {
             String reading = input.readLine();
             if(pivot=="initial"){
                 for(int i=0; i<n;i++){
-                    System.out.println("Clave leida: " + reading);
+                    //System.out.println("Clave leida: " + reading);
                     keys.add(reading);
                     reading = input.readLine();
                 }

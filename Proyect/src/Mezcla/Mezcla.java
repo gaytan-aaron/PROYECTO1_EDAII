@@ -1,12 +1,48 @@
 package Mezcla;
 
 import java.util.*;
+import FileManager.FileManager;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Mezcla{
 
 	
-	public void mezclaEquilibrada(List<String> arr){
+	public static void mezclaEquilibrada(String nombreArchivo){    //recibira la direccion del archivo en cadena
+            
+        String aux1 = "./files/orden/aux1.txt"; //direcciones de los archivos auxiliares
+        String aux2 = "./files/orden/aux2.txt";
+        String orden = "./files/orden/orden.txt";
+                
+        FileManager.createFile(aux1);   //creacion de los 2 archivos auxiliares
+        FileManager.createFile(aux2);
+        FileManager.createFile(orden);	//creacion de un archivo igual al original para mostrar las iteraciones
 
+        File archivo = new File(nombreArchivo); 
+                
+        List<String> arr;	//lista principal donde se almacenaran las claves del archivo
+
+		FileManager leer = new FileManager(1);  //creacion del objeto para manipulacion de archivos 
+
+		arr = leer.readKeyFile(nombreArchivo);    //en la lista se almacenan las claves del archivo
+
+
+		BufferedWriter bw = null;
+                try {
+                    bw = new BufferedWriter(new FileWriter(archivo));	//manejo de bufferWriter para escribir en los archivos...
+            														//...agregando al original y sobreescribiendo
+
+                    bw.write("");	//sobreescribir todo el aechivo original
+
+        FileManager.writeKeyFile(aux1, " ", false);		//esto permite escribir en el archivo auxiliar 1
+		FileManager.writeKeyFile(aux1, "Primer archivo auxiliar", false);
+		FileManager.writeKeyFile(aux1, " ", false);
+
+		FileManager.writeKeyFile(aux2, " ", false);		//esto permite escribir en el archivo auxiliar 2
+		FileManager.writeKeyFile(aux2, "Segundo archivo auxiliar", false);
+		FileManager.writeKeyFile(aux2, " ", false);
+             
 		int inicio = 0;
 		int fin = 1;
 		int l = 1;
@@ -19,15 +55,14 @@ public class Mezcla{
 		int inicioAux = 0;
 		int finAux = 0;
 
-		//StringBuilder temp = new StringBuilder();
-
 		boolean ordenado = false;
 		boolean bandera = true;		//este booleano hará que se ingresen elementos a la lista 1...
 									//... y luego a la 2 de forma intercalada.
-		List<String> arr1 = new LinkedList<>();
+                                                                        
+		List<String> arr1 = new LinkedList<>(); //listas auxiliares para el tratamiento de las claves
 		List<String> arr2 = new LinkedList<>();
 
-		int tamanoListaOriginal = arr.size();
+		int tamanoListaOriginal = arr.size();   //variable auxiliar que sabrá el número de elementos dentro del archivo/lista
 
 		do{
 
@@ -35,12 +70,22 @@ public class Mezcla{
 			bandera = true;
 
 			cont++;
-			System.out.println(" ");
-			System.out.println(cont + "a iteracion de mezcla natural");
+
+			FileManager.writeKeyFile(orden, " ", false);		//esto permite escribir en los archivos aux
+            FileManager.writeKeyFile(orden, " ", false);
+			FileManager.writeKeyFile(orden, cont + "a iteracion de mezcla natural", false);
+
+			FileManager.writeKeyFile(aux1, " ", false);		//esto permite escribir en los archivos aux
+			FileManager.writeKeyFile(aux1, cont + "a iteracion de mezcla natural", false);
+			FileManager.writeKeyFile(aux1, " ", false);
+
+			FileManager.writeKeyFile(aux2, " ", false);		//esto permite escribir en los archivos aux
+			FileManager.writeKeyFile(aux2, cont + "a iteracion de mezcla natural", false);
+			FileManager.writeKeyFile(aux2, " ", false);	
 			
 		
 			//este proceso se encargará de ver qué elementos estan ordenados de forma natural y...
-			//...los ingresara de forma intercalada en cada lista auxiliar.
+			//...los ingresara de forma intercalada en cada lista auxiliar, todo en bloques.
 
 			while( arr.size() != 0){	//mientras la lita original no este vacia.
 				inicio = 0;		//se inicializan siempre, porque al eliminar datos...
@@ -67,16 +112,19 @@ public class Mezcla{
 				
 				if(bandera){	//la bandera dira a que lista imprimirse.
 					if(arr.size() == 1){	//
+						FileManager.writeKeyFile(aux1, arr.get(0), false);	
+						FileManager.writeKeyFile(aux1, " ", false);
 						arr1.add(arr.remove(0));	//si solo se detectó un elemento en orden, ...
 						inicio++;							//... se agrega a la lista aux y se elimina de la original.
 					}else{
-						while((inicio < fin) && (arr.size()>=1)){	//esto permitira que se recorran los elementos...
-																//...de forma natural y...
-																//...se ingresen a la lista aux. 
+						while((inicio < fin) && (arr.size()>=1)){						//esto permitira que se recorran los elementos...
+							FileManager.writeKeyFile(aux1, arr.get(0), false);		//...de forma natural y...
+																						//...se ingresen a la lista aux. 
 							arr1.add(arr.remove(0));	//se estrae el primer elemento de la lista original...
 														//...pues siempre se recorren a la izquierda.
 							inicio++;
 						}
+						FileManager.writeKeyFile(aux1, " ", false);	
 					}
 				}
 
@@ -84,13 +132,17 @@ public class Mezcla{
 				
 				if(!bandera){
 					if(arr.size()==1){
+							FileManager.writeKeyFile(aux2, arr.get(0), false);	
+							FileManager.writeKeyFile(aux2, " ", false);
 							arr2.add(arr.remove(0));
 							inicio++;
 					}else{
 						while((inicio < fin) && (arr.size()>=1)){
+							FileManager.writeKeyFile(aux2, arr.get(0), false);	
 							arr2.add(arr.remove(0));
 							inicio+=1;
 						}
+						FileManager.writeKeyFile(aux2, " ", false);	
 					}
 				}
 		 
@@ -100,20 +152,6 @@ public class Mezcla{
 				
 			}
 			
-			//se imprimirán los elementos de las listas auxiliares
-
-			System.out.println(" ");
-			System.out.println("Primer lista auxilixar");
-			System.out.println(" ");
-
-			imprimir(arr1);
-
-			
-			System.out.println(" ");
-			System.out.println("Segunda lista auxiliar");
-			System.out.println(" ");
-
-			imprimir(arr2);
 
 			//ahora se mezclaran las particiones y se ordenaran en la lista original...
 			//...por bloques
@@ -194,29 +232,45 @@ public class Mezcla{
 
 
 			}
+                        
+          
+          
+			//espaciado en el archivo de las iteraciones
+			FileManager.writeKeyFile(orden, " ", false);		
 
-			System.out.println("Lista original: ");
-			System.out.println(" ");
-			imprimir(arr);
+
+			for(int j = 0; j < arr.size(); j++){
+				//FileManager.writeKeyFile(nombreArchivo, arr.get(j), false);
+				FileManager.writeKeyFile(orden, arr.get(j), false);
+			}
 
 
 
 		}while(!ordenado);	//si ya está ordenada la lista, se termina el programa
+
+		if(ordenado == true){	//se pasa la coleccion ordenada al archivo original
+				for(int j = 0; j < arr.size(); j++){
+					FileManager.writeKeyFile(nombreArchivo, arr.get(j), false);
+				}
+		}
+
+		bw.close();             //...poder escribir sobre él más adelante.
+		} catch (IOException ex) {
+             Logger.getLogger(Mezcla.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 	}
 
 
 
 
-public static void imprimir(List<String> listaDeImpresion){
+	public static void imprimir(List<String> listaDeImpresion){
 
-	for(String recorrido:listaDeImpresion){
-		System.out.println(recorrido);
+		for(String recorrido:listaDeImpresion){
+			System.out.println(recorrido);
+		}
+
 	}
-
-}
-
-
-
 
 
 }
