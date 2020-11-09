@@ -21,6 +21,7 @@ public class Main {
         int n = 3;
         int cont = 0;
         int externCont = 0;
+        int contInter;
         FileManager polyphaseOne = new FileManager(n);
         FileManager polyphaseTwo = new FileManager(n);
         FileManager.createFile(auxOne);
@@ -44,9 +45,14 @@ public class Main {
             polyphaseTwo.pivot = "initial";
             polyphaseTwo.n = n;
             cont = 0;
-            KeysIntercalation.firstTime = true;
+            contInter = 0;
+           
 
             while (polyphaseOne.pivot != null) {
+                if(contInter<=1){
+                     KeysIntercalation.firstTime = true;
+                     contInter++;
+                }
                 cont++;
                 if (externCont % 2 == 1) {
                     keysOne = polyphaseOne.readBlockFile(auxOne);
@@ -62,7 +68,10 @@ public class Main {
                     }
                 } else {
                     keysOne = polyphaseOne.readBlockFile(fileName);
-                    keysTwo = polyphaseTwo.readBlockFile(auxThree);
+                    if(polyphaseTwo.pivot != null)
+                        keysTwo = polyphaseTwo.readBlockFile(auxThree);
+                    else
+                        keysTwo = null;
                     
                     if (cont % 2 == 1) {
                         KeysIntercalation.intercalation(keysOne, keysTwo, auxOne);
@@ -73,6 +82,28 @@ public class Main {
             }
             
             n = n * 2;
+        }
+        
+        if(externCont % 2 == 0){
+            if(keyNumber > FileManager.countKeySize(auxOne)){
+                keysOne = polyphaseOne.readKeyFile(auxOne);
+                keysTwo = polyphaseTwo.readKeyFile(auxTwo);
+                KeysIntercalation.firstTime = true;
+                KeysIntercalation.intercalation(keysOne, keysTwo, fileName);
+                System.out.println("Tu archivo ordenado esta en " + fileName);
+            }
+            else
+                System.out.println("Tu archivo ordenado esta en " + auxOne);
+        } else {
+            if(keyNumber > FileManager.countKeySize(fileName)) {
+                keysOne = polyphaseOne.readKeyFile(fileName);
+                keysTwo = polyphaseTwo.readKeyFile(auxThree);
+                KeysIntercalation.firstTime = true;
+                KeysIntercalation.intercalation(keysOne, keysTwo, auxOne);
+                System.out.println("Tu archivo ordenado esta en " + auxOne);
+            }
+            else
+                System.out.println("Tu archivo ordenado esta en " + fileName);
         }
     }
 }

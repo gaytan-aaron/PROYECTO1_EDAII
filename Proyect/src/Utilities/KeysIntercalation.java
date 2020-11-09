@@ -13,12 +13,14 @@ public class KeysIntercalation {
     
     public static void intercalation(List<String> keyOne, List<String> keyTwo, String fileName){
         List<String> keys = new LinkedList<>();
-        while(!keyOne.isEmpty() && !keyTwo.isEmpty()){
-            if(StringUtilities.stringLastName(keyOne.get(0)).compareTo(StringUtilities.stringLastName(keyTwo.get(0)))<0){
-                keys.add(keyOne.remove(0));
+        if(keyTwo != null){
+            while(!keyOne.isEmpty() && !keyTwo.isEmpty()){
+                if(StringUtilities.stringLastName(keyOne.get(0)).compareTo(StringUtilities.stringLastName(keyTwo.get(0)))<0){
+                    keys.add(keyOne.remove(0));
+                }
+                else
+                    keys.add(keyTwo.remove(0));
             }
-            else
-                keys.add(keyTwo.remove(0));
         }
         if(!keyOne.isEmpty()){
             while(!keyOne.isEmpty())

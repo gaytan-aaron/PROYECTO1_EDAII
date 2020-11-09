@@ -136,6 +136,10 @@ public class FileManager {
         }
     }
     
+    /**
+     * Crea un nuevo archivo con el nombre especificado.
+     * @param fileName Nombre del archivo que se va a crear.
+     */
     public static void createFile(String fileName) {
         File fileC = new File(fileName);
         try {
@@ -145,4 +149,5 @@ public class FileManager {
             ex.printStackTrace(System.out);
         }
     }
+    
 }

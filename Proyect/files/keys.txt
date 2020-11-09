@@ -11,3 +11,8 @@ Santiago, Sanchez Torres, 345788
 Raul, Solano Rodriguez, 205874
 Miguel, de Cervantes Saavedra, 124566
 Saul, Osnaya Pineda, 456781
+Erick, Valdez Alanis, 340988
+Emir, Flores Garcia, 987777
+Joel, Bustamante Gutierrez, 076622
+Omar, Soriano Barcenas, 665342
+Bruno, Alvarez Noyola, 897761
