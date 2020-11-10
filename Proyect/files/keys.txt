@@ -1,18 +1,18 @@
+Aaron Emmanuel, Gaytan Nava, 014658
+Bruno, Alvarez Noyola, 897761
+Didier, Nieto Solis, 238765
+Diego, Alcantara Perez, 987654
+Emir, Flores Garcia, 987777
+Erick, Valdez Alanis, 340988
+Felix, Cuevas Martinez, 123387
+Joel, Bustamante Gutierrez, 076622
+Jorge, Peralta Perez, 236678
+Jose, Mendez Rodriguez, 987652
+Jose Refugio, Velazquez Gonzalez, 101010
 Juan, Perez Gomez, 303030
 Luis Alberto, Gomez Lopez, 123456
-Jose, Mendez Rodriguez, 987652
-Aaron Emmanuel, Gaytan Nava, 014658
-Diego, Alcantara Perez, 987654
-Felix, Cuevas Martinez, 123387
-Jorge, Peralta Perez, 236678
-Jose Refugio, Velazquez Gonzalez, 101010
-Didier, Nieto Solis, 238765
-Santiago, Sanchez Torres, 345788
-Raul, Solano Rodriguez, 205874
 Miguel, De Cervantes Saavedra, 124566
-Saul, Osnaya Pineda, 456781
-Erick, Valdez Alanis, 340988
-Emir, Flores Garcia, 987777
-Joel, Bustamante Gutierrez, 076622
 Omar, Soriano Barcenas, 665342
-Bruno, Alvarez Noyola, 897761
+Raul, Solano Rodriguez, 205874
+Santiago, Sanchez Torres, 345788
+Saul, Osnaya Pineda, 456781
