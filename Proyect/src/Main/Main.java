@@ -5,6 +5,7 @@ import Utilities.KeysIntercalation;
 import Utilities.KeysUtilities;
 import java.util.*;
 import Mezcla.*;
+import RadixSort.*;
 import java.io.*;
 
 /**
@@ -102,7 +103,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println(" ");
-                    System.out.println("Aqui va Radix ");
+                    principal.menuRadix(fileName);
                     break;
                 case 4:
                      b=false;    //se cambia la bandera para salir del ciclo
@@ -168,6 +169,14 @@ public class Main {
                     break;
             }
         }while(flag);
+    }
+    
+    public void menuRadix(String nombreDelArchivo){
+        System.out.println("");
+        System.out.println("Bienvenido a RadixSort");
+        System.out.println("Se hará un ordenamiento de los numeros de cuenta");
+        RadixSortNumeros radix = new RadixSortNumeros();
+        radix.Radix(nombreDelArchivo);
     }
 
 
