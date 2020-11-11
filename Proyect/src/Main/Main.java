@@ -5,6 +5,7 @@ import Utilities.KeysIntercalation;
 import Utilities.KeysUtilities;
 import java.util.*;
 import Mezcla.*;
+import Polyphase.SortPolyphase;
 import RadixSort.*;
 import java.io.*;
 
@@ -94,7 +95,8 @@ public class Main {
             switch(op){
                 case 1:
                     System.out.println(" ");
-                    System.out.println("Aqui va polifase");
+                    System.out.println("Ordenamiento por polifase.");
+                    principal.menuPolyphase(fileName);
                     break;
                 case 2:
                     System.out.println(" ");
@@ -179,6 +181,45 @@ public class Main {
         radix.Radix(nombreDelArchivo);
     }
 
-
+    public void menuPolyphase(String nombreDelArchivo){
+        Scanner xd = new Scanner(System.in);
+        int option; 
+        boolean flag = true;     
+        do{
+            System.out.println(" "); 
+            System.out.println("Polifase"); 
+            System.out.println("Seleccione el criterio de ordenamiento");   
+            System.out.println("1) Nombres ");
+            System.out.println("2) Apellidos ");
+            System.out.println("3) Numero de cuenta  ");
+            System.out.println("4) Salir ");
+            System.out.print("Su opcion es: "); //agregue una indicacion en pantalla
+            option = xd.nextInt();
+            switch(option){
+                case 1:
+                    System.out.println(" ");
+                    System.out.println("Se ha realizado el ordenamiento por nombre.");
+                    SortPolyphase.sortPoly(nombreDelArchivo, option);
+                    break;
+                case 2:
+                    System.out.println(" ");
+                    System.out.println("Se ha realizado el ordenamiento por apellido.");
+                    SortPolyphase.sortPoly(nombreDelArchivo, option);
+                    break;
+                case 3:
+                    System.out.println(" ");
+                    System.out.println("Se ha realizado el ordenamiento por numero de cuenta.");
+                    SortPolyphase.sortPoly(nombreDelArchivo, option);
+                    break;
+                case 4:
+                     flag=false;    //se cambia la bandera para salir del ciclo
+                    break;
+                default:
+                    System.out.println(" ");
+                    System.out.println("Opci\u00f3n no v\u00e1lida");
+                    break;
+            }
+        }while(flag);
+    }
 
 }

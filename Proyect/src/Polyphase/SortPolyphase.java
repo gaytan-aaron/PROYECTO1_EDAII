@@ -3,6 +3,7 @@ package Polyphase;
 import FileManager.FileManager;
 import Utilities.KeysIntercalation;
 import Utilities.KeysUtilities;
+import Utilities.StringUtilities;
 import java.util.List;
 
 /**
@@ -15,8 +16,9 @@ public class SortPolyphase {
     *Realiza el proceso de ordenamiento externo por Polifase.
     *Es necesario haber creado el archivo de llaves a ordenar.
     */
-    public static void sortPoly() {
-        String fileName = "./files/keys.txt";
+    public static void sortPoly(String fN, int opc) {
+        StringUtilities.opt = opc;
+        String fileName = fN;
         String auxOne = "./files/auxOne.txt";
         String auxTwo = "./files/auxTwo.txt";
         String auxThree = "./files/auxThree.txt";
@@ -104,7 +106,8 @@ public class SortPolyphase {
                 KeysIntercalation.intercalation(keysOne, keysTwo, fileName);
                 System.out.println("Tu archivo ordenado esta en " + fileName);
             } else {
-                System.out.println("Tu archivo ordenado esta en " + auxOne);
+                System.out.println("Tu archivo ordenado esta ahora en " + auxOne);
+                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal y selecciona el archivo: " + auxOne);
             }
         } else {
             if (keyNumber > FileManager.countKeySize(fileName)) {
@@ -113,6 +116,7 @@ public class SortPolyphase {
                 KeysIntercalation.firstTime = true;
                 KeysIntercalation.intercalation(keysOne, keysTwo, auxOne);
                 System.out.println("Tu archivo ordenado esta en " + auxOne);
+                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal y selecciona el archivo: " + auxOne);
             } else {
                 System.out.println("Tu archivo ordenado esta en " + fileName);
             }
