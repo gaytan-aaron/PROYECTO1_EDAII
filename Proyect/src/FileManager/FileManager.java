@@ -76,7 +76,7 @@ public class FileManager {
             input = new BufferedReader(new FileReader(keyFile));
             String reading = input.readLine();
             while (reading != null) {
-                System.out.println("Clave leida: " + reading);
+                //System.out.println("Clave leida: " + reading);
                 keys.add(reading);
                 reading = input.readLine();
             }
