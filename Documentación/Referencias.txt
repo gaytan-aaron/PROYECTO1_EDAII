@@ -1,0 +1,10 @@
+Referencias
+
+Cairo Battistutti, O., & Guardati Buemo, S. (2006). Estructuras de datos (3a ed.). 
+McGraw-Hill. http://search.ebscohost.com/login.aspx?direct=true&db=cat02025a&AN=lib.MX001001277430&lang=es&site=eds-live
+
+Guardati Buemo, S. (2007). Estructura de datos orientada a objetos: algoritmos con C++ (Primera edición). 
+Pearson Educación. http://search.ebscohost.com/login.aspx?direct=true&db=cat02025a&AN=lib.MX001001976395&lang=es&site=eds-live
+
+Joyanes Aguilar, L. (2008). Fundamentos de programación: algoritmos, estructura de datos y objetos (Cuarta edición). 
+McGraw-Hill Interamericana. http://search.ebscohost.com/login.aspx?direct=true&db=cat02025a&AN=lib.MX001001698916&lang=es&site=eds-live
