@@ -26,7 +26,7 @@ public class SortPolyphase {
         List<String> keysOne;
         List<String> keysTwo;
         int keyNumber = FileManager.countKeySize(fileName);
-        int n = 3;
+        int n = 4;
         int cont = 0;
         int externCont = 0;
         int contInter;
@@ -107,7 +107,7 @@ public class SortPolyphase {
                 System.out.println("Tu archivo ordenado esta en " + fileName);
             } else {
                 System.out.println("Tu archivo ordenado esta ahora en " + auxOne);
-                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal y selecciona el archivo: " + auxOne);
+                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal e intercambia los contenidos de " + auxOne + "con su archivo inicial.");
             }
         } else {
             if (keyNumber > FileManager.countKeySize(fileName)) {
@@ -116,7 +116,7 @@ public class SortPolyphase {
                 KeysIntercalation.firstTime = true;
                 KeysIntercalation.intercalation(keysOne, keysTwo, auxOne);
                 System.out.println("Tu archivo ordenado esta en " + auxOne);
-                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal y selecciona el archivo: " + auxOne);
+                System.out.println("¡Ahora tu archivo que contiene tus claves ha cambiado! por favor sal e intercambia los contenidos de " + auxOne + "con su archivo inicial.");
             } else {
                 System.out.println("Tu archivo ordenado esta en " + fileName);
             }
